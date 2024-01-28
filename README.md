@@ -12,5 +12,7 @@ python build.py  # if beaker image already exists, delete it based on the error 
 ```bash
 ssh {username}@{hostname}.reviz.ai2.in # ssh into one of the cirrascale servers
 
-python start.py {model_name} --num_gpus {num_gpus} --port {port}
+git clone https://github.com/HarshTrivedi/beaker-vllm # if not already done.
+
+python beaker-vllm/start.py {model_name} --num_gpus {num_gpus} --port {port}
 ```
