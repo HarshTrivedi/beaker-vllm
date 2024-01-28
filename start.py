@@ -52,13 +52,15 @@ def main() -> None:
     args = parser.parse_args()
 
     if args.hf_home is None:
+        is_on_cirrascale = os.path.exists(os.path.join("/net", "nfs.cirrascale"))
+        is_on_elanding = os.path.exists(os.path.join("/net", "nfs2.aristo"))
         default_hf_home_cirrascale = os.path.join(
             "/net", "nfs.cirrascale", "aristo", "vllm_server"
         )
         default_hf_home_elanding = os.path.join("/net", "nfs2.aristo", "vllm_server")
-        if os.path.exists(default_hf_home_cirrascale):
+        if is_on_cirrascale:
             args.hf_home = default_hf_home_cirrascale
-        elif os.path.exists(default_hf_home_elanding):
+        elif is_on_elanding:
             args.hf_home = default_hf_home_elanding
 
     command = dedent(
