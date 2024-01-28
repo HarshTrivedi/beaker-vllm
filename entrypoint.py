@@ -30,8 +30,9 @@ def main() -> None:
         f"--model {args.model_name} --tensor-parallel-size {args.num_gpus}"
     )
     chat_template = MODEL_NAME_TO_CHAT_TEMPLATE.get(args.model_name, None)
-    if chat_template is not None:
-        command += f" --chat-template {chat_template}"
+    # if chat_template is not None: # Disable temporarily.
+    assert os.path.exists(chat_template), f"Chat template {chat_template} does not exist."
+    command += f" --chat-template {chat_template}"
 
     print(f"Running: {command}")
     subprocess.run(command, shell=True)

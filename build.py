@@ -29,15 +29,23 @@ def main() -> None:
         action="store_true",
         help="delete image first",
     )
+    parser.add_argument(
+        "--no-cache",
+        action="store_true",
+        help="run docker build with --no-cache",
+    )
 
     args = parser.parse_args()
 
-    command = f"docker build -t {args.username}/{args.image} ."
+    if args.no_cache:
+        command = f"docker build --no-cache -t {args.image} ."
+    else:
+        command = f"docker build -t {args.image} ."
     print(f"Running: {command}")
     subprocess.run(command, shell=True)
 
     if args.force:
-        command = f"beaker image delete {args.image}"
+        command = f"beaker image delete {args.username}/{args.image}"
         print(f"Running: {command}")
         subprocess.run(command, shell=True)
 
