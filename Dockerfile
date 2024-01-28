@@ -6,4 +6,4 @@ ENV MODEL_NAME="facebook/opt-125m"
 ENV HF_HOME="~/.cache/huggingface/"
 ENV NUM_GPUS=1
 
-ENTRYPOINT ["sh", "-c", "HF_HOME=$HF_HOME python -m vllm.entrypoints.openai.api_server --model $MODEL_NAME --tensor-parallel-size $NUM_GPUS"]
+ENTRYPOINT ["python", "entrypoint.py", $MODEL_NAME, "--hf_home", $HF_HOME, "--num_gpus", $NUM_GPUS]

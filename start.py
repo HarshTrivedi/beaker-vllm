@@ -8,7 +8,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Start VLLM server on beaker.")
     parser.add_argument("model_name", type=str, help="model id/name")
     parser.add_argument(
-        "--cache_dir",
+        "--hf_home",
         type=str,
         help="huggingface cache directory",
         default=None,
@@ -51,15 +51,15 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    if args.cache_dir is None:
-        default_cache_dir_cirrascale = os.path.join(
+    if args.hf_home is None:
+        default_hf_home_cirrascale = os.path.join(
             "/net", "nfs.cirrascale", "aristo", "vllm_server"
         )
-        default_cache_dir_elanding = os.path.join("/net", "nfs2.aristo", "vllm_server")
-        if os.path.exists(default_cache_dir_cirrascale):
-            args.cache_dir = default_cache_dir_cirrascale
-        elif os.path.exists(default_cache_dir_elanding):
-            args.cache_dir = default_cache_dir_elanding
+        default_hf_home_elanding = os.path.join("/net", "nfs2.aristo", "vllm_server")
+        if os.path.exists(default_hf_home_cirrascale):
+            args.hf_home = default_hf_home_cirrascale
+        elif os.path.exists(default_hf_home_elanding):
+            args.hf_home = default_hf_home_elanding
 
     command = dedent(
         f"""
@@ -69,7 +69,7 @@ def main() -> None:
         --gpus {args.num_gpus} \
         --memory {args.memory}GiB \
         --env MODEL_NAME={args.model_name} \
-        --env HF_HOME={args.cache_dir} \
+        --env HF_HOME={args.hf_home} \
         --env NUM_GPUS={args.num_gpus}
     """
     ).strip()
