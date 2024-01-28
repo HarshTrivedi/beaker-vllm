@@ -16,5 +16,7 @@ chat_response = client.chat.completions.create(
         {"role": "system", "content": "You are a helpful, respectful, and honest assistant."},
         {"role": "user", "content": "Write a Python function to merge two sorted lists into one sorted list without using any built-in sort functions."},
     ],
+    temperature=0.0,
+    max_tokens=300,
 )
-print("Chat response:", chat_response)
+print(chat_response.choices[0].message.content)
