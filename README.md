@@ -4,7 +4,7 @@
 
 ```bash
 # Do only once from this directory locally.
-python build.py  # if beaker image already exists, delete it based on the error message.
+python build.py --force
 ```
 
 2. Run the Server
