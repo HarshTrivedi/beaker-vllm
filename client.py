@@ -11,10 +11,10 @@ client = OpenAI(
 )
 
 chat_response = client.chat.completions.create(
-    model="facebook/opt-125m",
+    model="OpenLemur/lemur-70b-chat-v1",  # or try smaller, "facebook/opt-125m".
     messages=[
-        {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "Tell me a joke."},
+        {"role": "system", "content": "You are a helpful, respectful, and honest assistant."},
+        {"role": "user", "content": "Write a Python function to merge two sorted lists into one sorted list without using any built-in sort functions."},
     ],
 )
 print("Chat response:", chat_response)
