@@ -2,8 +2,8 @@ FROM nvcr.io/nvidia/pytorch:23.10-py3
 
 RUN pip install vllm
 
-COPY chat_templates chat_templates
-COPY entrypoint.py entrypoint.py
+COPY chat_templates/ .
+COPY entrypoint.py .
 
 ENV MODEL_NAME="facebook/opt-125m"
 ENV HF_HOME="~/.cache/huggingface/"
