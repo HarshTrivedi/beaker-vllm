@@ -70,6 +70,7 @@ def main() -> None:
         --workspace {args.workspace} --port {args.port}:{args.port} \
         --gpus {args.num_gpus} \
         --memory {args.memory}GiB \
+        --shared-memory 15GiB \
         --env MODEL_NAME={args.model_name} \
         --env HF_HOME={args.hf_home} \
         --env NUM_GPUS={args.num_gpus}
