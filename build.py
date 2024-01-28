@@ -32,7 +32,7 @@ def main() -> None:
 
     args = parser.parse_args()
 
-    command = f"docker build -t {args.image} ."
+    command = f"docker build -t {args.username}/{args.image} ."
     print(f"Running: {command}")
     subprocess.run(command, shell=True)
 
